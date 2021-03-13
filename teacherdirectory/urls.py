@@ -7,4 +7,4 @@ urlpatterns = [
     path('teacher_profile/<int:pk>', TeacherProfileDetailView.as_view(), name='teacher_profile_detail'),
     path('teacher_profile/delete/<int:pk>', TeacherProfileDeleteView.as_view(), name='teacher_profile_delete'),
     path('teacher_profiles/import//', csv_teacher_profile_upload, name="import_teacher_profiles"),
-] 
+]

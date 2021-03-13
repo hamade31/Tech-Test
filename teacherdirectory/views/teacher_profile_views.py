@@ -73,8 +73,7 @@ def handle_teacher_profile_pictures(f):
     ext = f[l - 4 : l].lower()
     if (ext == ".jpg" or ext == ".png") and os.path.exists(MEDIA_ROOT + "/" + f):
         return f
-    return "placeholder.jpg"
-    
+    return "placeholder.jpg" 
 
 def handle_subjects(row):
     """Parses the subjects contained in the subjects column in the imported csv, and ensures that only the first 5 are returned, returns empty if none are found."""

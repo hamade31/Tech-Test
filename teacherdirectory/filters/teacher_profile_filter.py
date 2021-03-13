@@ -6,4 +6,4 @@ class TeacherProfileFilter(django_filters.FilterSet):
     subjects = django_filters.CharFilter(lookup_expr='contains')
     class Meta:
         model = TeacherProfile
-        fields = ["last_name", "subjects", ] 
+        fields = ["last_name", "subjects", ]
