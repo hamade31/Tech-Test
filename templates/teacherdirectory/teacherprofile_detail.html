@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>{{ teacherprofile.first_name }}  {{ teacherprofile.last_name }}</h1>
+	
+    <p>
+        <img src="{{ teacherprofile.profile_picture.url }}" alt="Profile picture of {{teacherprofile.first_name}} {{ teacherprofile.last_name }}"
+        width="360" height = "240">
+    </p>
+
+    <p>
+        Email Address: {{ teacherprofile.email_address }}
+    </p>
+
+    <p>
+        Phone Number: {{ teacherprofile.phone_number }}
+    </p>
+
+    <p>
+        Room Number: {{teacherprofile.room_number}}
+    </p>
+
+    <p>
+        Subjects: {{teacherprofile.subjects}}
+    </p>
+	
+    {% if user.is_authenticated %}
+	<form action="{% url 'teacher_profile_delete' pk=teacherprofile.id %}" method="GET">
+		{% csrf_token %}
+		<button type="submit">Delete Profile</button>
+	</form>
+	{% else %}
+		<p>
+			<a href="{% url 'login' %}?next={{request.path}}">
+				Log in to delete teacher profiles
+			</a>
+		</p>
+    {% endif %}
+{% endblock %} 

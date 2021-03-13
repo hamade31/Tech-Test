@@ -1,0 +1,31 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+	<h1>Teacher Profiles</h1>
+	
+	<h3>Filters</h3>
+    <form method="get">
+        {{ filter.form.as_p }}
+        <input type="submit" />
+    </form>
+	
+	<h3>Results</h3>
+	{% if filter.qs.count > 0 %}
+	<ul>
+		{% for teacherprofile in filter.qs %}
+		<li>
+			<a href="{{ teacherprofile.get_absolute_url }}">{{ teacherprofile.first_name }} {{ teacherprofile.last_name }}</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<p>There are no teachers in this directory.</p>
+	{% endif %}
+	
+	{% if user.is_authenticated %}
+	<form action="{% url 'import_teacher_profiles' %}" method="GET">
+		{% csrf_token %}
+		<button type="submit">Import Teacher Profiles</button>
+	</form>
+	{% endif %}
+{% endblock %} 
